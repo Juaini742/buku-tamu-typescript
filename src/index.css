@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Poppins", sans-serif;
+  @apply bg-grey;
+}
+img {
+  @apply w-full;
+}
+.container {
+  @apply w-[95%] sm:w-[90%] mx-auto;
+}
+.list-items {
+  @apply my-3 py-3 px-5 flex gap-1 items-center rounded-md hover:bg-danger hover:transition-all duration-300;
+}
+
+.active {
+  @apply bg-danger rounded-md;
+}
+.selected {
+  @apply font-bold text-warning;
+}
+.trans-300 {
+  @apply hover:transition-all duration-300;
+}
+.trans-500 {
+  @apply transition-all duration-500;
+}
+.flex-between-center {
+  @apply flex items-center justify-between;
+}
+.flex-center {
+  @apply flex items-center justify-center;
+}
+.flex-item-evenly {
+  @apply flex items-center justify-evenly;
+}
+.flex-col-center {
+  @apply flex flex-col items-center;
+}
+.flex-wrap-between {
+  @apply flex flex-wrap-reverse items-center justify-between;
+}
+.grid-1-2 {
+  @apply grid grid-cols-1 md:grid-cols-2;
+}
+.grid-1-3 {
+  @apply grid grid-cols-1 md:grid-cols-3;
+}
+.grid-2-4 {
+  @apply grid grid-cols-2 md:grid-cols-4;
+}
+
+.btn-primary {
+  @apply trans-300 bg-primary rounded-lg text-[#fff] hover:bg-secondary;
+}
+.btn-outline-primary {
+  @apply trans-300 ring-offset-2 ring-2 ring-primary shadow-lg bg-primary/30  hover:bg-secondary hover:text-[#fff];
+}
+.btn-danger {
+  @apply trans-300 bg-danger shadow-md  rounded-lg text-[#fff] hover:bg-dangerH;
+}
+.btn-warning {
+  @apply trans-300 bg-warning shadow-md rounded-lg text-[#fff] hover:bg-warningH;
+}
+
+.navStyle {
+  @apply absolute md:flex md:static flex-col md:flex-row bg-primary/50 md:bg-blue-50/0 backdrop-blur-lg md:backdrop-blur-none p-10 top-20 rounded-lg shadow-xl md:shadow-none gap-8 right-5 text-white;
+}
