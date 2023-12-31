@@ -1,11 +1,12 @@
 import {Provider} from "react-redux";
 import {RootRouter} from "./router";
 import store from "./store/store";
+// import {BrowserRouter} from "react-router-dom";
 
 function App() {
   return (
     <Provider store={store}>
-      <RootRouter />;
+      <RootRouter />
     </Provider>
   );
 }

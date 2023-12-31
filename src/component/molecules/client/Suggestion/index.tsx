@@ -6,15 +6,14 @@ import {
   getSuggestAction,
   postSuggestAction,
 } from "../../../../store/actions/suggest.action";
-import Cookies from "js-cookie";
 import {getUserByToken} from "../../../../store/actions/auth.action";
 import TextArea from "antd/es/input/TextArea";
+import useAuth from "../../../../hooks/useAuth";
 
 function CriticsForm() {
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.user.data);
+  const {auth, token} = useAuth();
   const suggest = useSelector((state) => state.suggest.data);
-  const token = Cookies.get("refreshToken");
   const id = auth.id;
   const [formData, setFormData] = useState({
     name: "",

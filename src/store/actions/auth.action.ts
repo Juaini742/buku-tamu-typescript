@@ -1,8 +1,10 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 interface LoginFormData {
   email: string;
+  role: string;
   password: string;
 }
 
@@ -14,7 +16,7 @@ interface UpdateData {
 
 export const LoginAction = createAsyncThunk(
   "loginAction/login",
-  async (formData: {formData: LoginFormData}) => {
+  async ({formData, navigate}: {formData: LoginFormData; navigate: any}) => {
     try {
       const response = await axios.post(
         "http://localhost:8080/api/login",
@@ -26,6 +28,15 @@ export const LoginAction = createAsyncThunk(
 
       if (!data) {
         throw new Error(data.message);
+      }
+
+      localStorage.setItem("token", data.token);
+      if (data.role === "client") {
+        navigate("/");
+      } else if (data.role === "admin") {
+        navigate("/dashboard");
+      } else {
+        throw new Error("Unknown role");
       }
 
       return data;
@@ -46,6 +57,10 @@ export const logoutAction = createAsyncThunk("auth/logout", async (token) => {
         },
       }
     );
+
+    localStorage.removeItem("token");
+    Cookies.remove("refreshToken");
+
     window.location.href = "/login";
     return response.data;
   } catch (error) {
@@ -94,7 +109,11 @@ export const updateUserAction = createAsyncThunk(
         }
       );
 
-      alert("oke");
+      Swal.fire({
+        title: "Terima kasih!",
+        text: "Profil anda telah berhasil diperbaharui",
+        icon: "success",
+      });
 
       return response.data;
     } catch (error) {

@@ -4,6 +4,7 @@ import axios from "axios";
 interface RegisterFormData {
   username: string;
   email: string;
+  role: string;
   password: string;
 }
 

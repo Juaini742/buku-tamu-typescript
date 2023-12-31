@@ -1,20 +1,19 @@
 import {Link, useParams} from "react-router-dom";
 import {Input, Skeleton} from "antd";
-import Cookies from "js-cookie";
 import {useSelector, useDispatch} from "react-redux";
 import {useEffect, useState} from "react";
 import {getGuestAction} from "../../../../../store/actions/guest.action";
 import {Button, Card, Container} from "../../../../atoms";
 import Navbar from "../../../../templates/client/navbar";
+import useAuth from "../../../../../hooks/useAuth";
 
 function DetailsGuest() {
+  const {id} = useParams();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.data);
+  const {auth, token} = useAuth();
   const guests = useSelector((state) => state.guest.data);
   const [selectedItem, setSelectedItem] = useState(null);
-  const token = Cookies.get("refreshToken");
-  const user_id = user.id;
-  const {id} = useParams();
+  const user_id = auth.id;
 
   useEffect(() => {
     dispatch(getGuestAction({token, user_id}));

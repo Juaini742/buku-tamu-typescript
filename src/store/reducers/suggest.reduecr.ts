@@ -24,7 +24,7 @@ const getSuggestSlice = createSlice({
       })
       .addCase(getSuggestAction.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.data = action.payload.dates;
+        state.data = action.payload;
       })
       .addCase(getSuggestAction.rejected, (state, action) => {
         state.status = "failed";

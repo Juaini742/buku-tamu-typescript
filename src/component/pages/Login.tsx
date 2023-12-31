@@ -5,6 +5,7 @@ import {useDispatch} from "react-redux";
 import {useState} from "react";
 import {LoginAction} from "../../store/actions/auth.action";
 import {unwrapResult} from "@reduxjs/toolkit";
+import Loaders from "../molecules/Loaders";
 
 function Login() {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ function Login() {
   const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     email: "",
+    role: "client",
     password: "",
   });
 
@@ -23,11 +25,10 @@ function Login() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const resultAction: any = await dispatch(LoginAction(formData));
-      const data = unwrapResult(resultAction);
-      if (data) {
-        navigate("/");
-      }
+      const resultAction: any = await dispatch(
+        LoginAction({formData, navigate})
+      );
+      unwrapResult(resultAction);
     } catch (error) {
       setError(error.message);
     }

@@ -67,9 +67,9 @@ function GuestForm2() {
                       Lihat Lengkap
                     </Button>
                   </Link>
-                  <Button variant="warning" className="h-20 px-4">
+                  {/* <Button variant="warning" className="h-20 px-4">
                     Edit
-                  </Button>
+                  </Button> */}
                 </div>
               </Card>
             ))

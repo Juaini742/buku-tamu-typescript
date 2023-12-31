@@ -1,19 +1,10 @@
 import {Input} from "antd";
-import Cookies from "js-cookie";
 import {Button, Card} from "../../../atoms";
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import {getUserByToken} from "../../../../store/actions/auth.action";
 import {Link} from "react-router-dom";
+import useAuth from "../../../../hooks/useAuth";
 
 function ProfileData() {
-  const dispatch = useDispatch();
-  const auth = useSelector((state) => state.user.data);
-  const token = Cookies.get("refreshToken");
-
-  useEffect(() => {
-    dispatch(getUserByToken(token));
-  }, [dispatch, token]);
+  const {auth} = useAuth();
 
   return (
     <>

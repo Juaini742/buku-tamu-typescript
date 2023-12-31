@@ -13,6 +13,7 @@ import regencSlice from "./kab.reducer";
 import subDistSlice from "./kec.reducer";
 import distSlice from "./kel.reducer";
 import guestSlice from "./guest.reducer";
+import allGuestSlice from "./all.guest.reducer";
 import {RegisterAction} from "../actions/register.action";
 import {postSuggestAction} from "../actions/suggest.action";
 
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   kec: subDistSlice,
   kel: distSlice,
   guest: guestSlice,
+  guests: allGuestSlice,
 });
 
 export const AsyncAction = {

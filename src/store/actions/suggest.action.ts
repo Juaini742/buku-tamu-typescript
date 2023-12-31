@@ -1,5 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 interface SuggestData {
   name: string;
@@ -48,9 +49,13 @@ export const postSuggestAction = createAsyncThunk(
         }
       );
 
-      alert("oke");
-
-      dispatch(getSuggestAction);
+      Swal.fire({
+        title: "Terima kasih!",
+        text: "Pesan anda sudah kami terima, senang anda ikut perpartisipasi dalam kemajuan kantor BPS",
+        icon: "success",
+      }).then(() => {
+        window.location.reload();
+      });
 
       return response.data;
     } catch (error) {

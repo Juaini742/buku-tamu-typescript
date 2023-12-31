@@ -1,20 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {Input} from "antd";
-import Cookies from "js-cookie";
 import {Button, Card} from "../../../atoms";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {
   getUserByToken,
   updateUserAction,
 } from "../../../../store/actions/auth.action";
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+import useAuth from "../../../../hooks/useAuth";
 
 function ProfileUpdateData() {
-  const dispatch = useDispatch();
   const user = useParams();
-  const auth = useSelector((state: any) => state.user.data);
-  const token = Cookies.get("refreshToken");
+  const dispatch = useDispatch();
+  const {auth, token} = useAuth();
   const id = user.id;
   const [formData, setFormData] = useState({
     file: null,
